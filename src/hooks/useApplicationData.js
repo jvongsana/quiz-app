@@ -4,20 +4,23 @@ import reducer, { SET_QUESTIONS, SET_SCORE, SET_CURRENT_QUESTION, SET_SHOW_STATE
 
 export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
-    questions: [],
+    questions: [ {
+      question: '',
+      answerOptions: [{}]
+    } ],
     score: 0,
     currentQuestion: 0,
     showScore: false
   });
-
+  console.log('s', state)
   useEffect(() => {
-    Promise.all([
-      axios.get(`https://opentdb.com/api.php?amount=8&category=9&difficulty=easy&type=multiple`),
-    ]).then((all) => {
+    axios.get(`https://opentdb.com/api.php?amount=8&category=9&difficulty=easy&type=multiple`)
+    .then((all) => {
+      console.log('a', all)
       dispatch({
         type: SET_QUESTIONS,
-        questions: all[0].data.results
-      })
+        questions: all.data.results
+      });
     });
   }, []);
 
@@ -39,7 +42,7 @@ export function useApplicationData() {
     }
   };
 
-  const setShowState = (show) => {
+  const setShowScore = (show) => {
     if(show) {
       dispatch({
         type: SET_SHOW_STATE,
@@ -54,6 +57,6 @@ export function useApplicationData() {
     state,
     setCurrentQuestion,
     setScore,
-    setShowState
+    setShowScore
   };
 };
