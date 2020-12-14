@@ -1,7 +1,6 @@
 import React from 'react';
 
 export default function QuestionSection(props) {
-  console.log('qs p', props)
   const handleAnswerOptionClick = (isCorrect) => {
 		if (isCorrect) {
 			props.setScore(props.score + 1);

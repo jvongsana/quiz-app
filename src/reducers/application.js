@@ -5,8 +5,6 @@ const SET_SCORE = "SET_SCORE";
 const SET_SHOW_STATE = "SET_SHOW_STATE"
 
 const reducer = function(state, action) {
-  console.log('s', state)
-  console.log('a', action)
   switch (action.type) {
     case SET_QUESTIONS:
       const questions = sortAPIQuestions(action.questions)

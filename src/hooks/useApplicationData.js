@@ -12,11 +12,10 @@ export function useApplicationData() {
     currentQuestion: 0,
     showScore: false
   });
-  console.log('s', state)
+
   useEffect(() => {
-    axios.get(`https://opentdb.com/api.php?amount=8&category=9&difficulty=easy&type=multiple`)
+    axios.get(`https://opentdb.com/api.php?amount=8&category=27&difficulty=easy&type=multiple`)
     .then((all) => {
-      console.log('a', all)
       dispatch({
         type: SET_QUESTIONS,
         questions: all.data.results

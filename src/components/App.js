@@ -12,7 +12,6 @@ export default function App() {
     setScore,
     setShowScore
   } = useApplicationData();
-  console.log('a s', state)
 
   return (
     <div className="App">

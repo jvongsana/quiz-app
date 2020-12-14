@@ -8,21 +8,27 @@ const arrayShuffle = (arr) => {
   return arr;
 };
 
+function decodeHtml(html) {
+  var txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+}
+
 const sortAPIQuestions = (questions) => {
   let formattedQuestions = []
   for (const question of questions) {
     const answerOptions = arrayShuffle([...question.incorrect_answers.map((option) => 
       {
-        return { answer: option, 
+        return { answer: decodeHtml(option), 
                  isCorrect: false}
       }), 
-      { answer: question.correct_answer, 
+      { answer: decodeHtml(question.correct_answer), 
         isCorrect: true
       }
     ])
 
     formattedQuestions.push({
-      question: question.question,
+      question: decodeHtml(question.question),
       answerOptions 
     });
   }
