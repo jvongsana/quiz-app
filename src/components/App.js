@@ -12,9 +12,17 @@ export default function App() {
     setShowQuiz,
     setCurrentQuestion,
     setScore,
-    setShowScore
+    setShowScore,
+    setStartTime,
+    setEndTime,
+    setQuizFinished
   } = useApplicationData();
 
+  if (state.showScore && !state.quizFinished) {
+    setQuizFinished();
+    setEndTime();
+  }
+  
   return (
     <div className="App">
       <header className="App-header">
@@ -23,6 +31,9 @@ export default function App() {
             <Score 
               questions={state.questions}
               score={state.score}
+              showScore={state.showScore}
+              startTime={state.startTime}
+              endTime={state.endTime}
             />
           ) : (
             <QuestionSection 
@@ -39,6 +50,7 @@ export default function App() {
           <StartQuiz 
             showQuiz={state.showQuiz}
             setShowQuiz={setShowQuiz}
+            setStartTime={setStartTime}
           />
         )}
       </header>

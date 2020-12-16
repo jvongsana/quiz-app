@@ -1,6 +1,14 @@
 import { useEffect, useReducer } from 'react';
 import axios from "axios";
-import reducer, { SET_SHOW_QUIZ, SET_QUESTIONS, SET_SCORE, SET_CURRENT_QUESTION, SET_SHOW_SCORE } from "../reducers/application";
+import reducer, 
+     { SET_SHOW_QUIZ, 
+       SET_QUESTIONS, 
+       SET_SCORE, 
+       SET_CURRENT_QUESTION, 
+       SET_SHOW_SCORE, 
+       SET_START_TIME, 
+       SET_END_TIME, 
+       SET_QUIZ_FINISHED } from "../reducers/application";
 
 export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
@@ -11,7 +19,10 @@ export function useApplicationData() {
     } ],
     score: 0,
     currentQuestion: 0,
-    showScore: false
+    showScore: false,
+    startTime: '',
+    endTime: '',
+    quizFinished: false
   });
 
   useEffect(() => {
@@ -60,13 +71,35 @@ export function useApplicationData() {
     }
   }
 
-  
+  const setStartTime = () => {
+    dispatch({
+      type: SET_START_TIME,
+      ...state,
+    })
+  }
+
+  const setEndTime = () => {
+    dispatch({
+      type: SET_END_TIME,
+      ...state,
+    })
+  }
+
+  const setQuizFinished = () => {
+    dispatch({
+      type: SET_QUIZ_FINISHED,
+      ...state,
+    })
+  }
 
   return { 
     state,
     setShowQuiz,
     setCurrentQuestion,
     setScore,
-    setShowScore
+    setShowScore,
+    setStartTime,
+    setEndTime,
+    setQuizFinished
   };
 };
