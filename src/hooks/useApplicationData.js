@@ -1,9 +1,10 @@
 import { useEffect, useReducer } from 'react';
 import axios from "axios";
-import reducer, { SET_QUESTIONS, SET_SCORE, SET_CURRENT_QUESTION, SET_SHOW_STATE } from "../reducers/application";
+import reducer, { SET_SHOW_QUIZ, SET_QUESTIONS, SET_SCORE, SET_CURRENT_QUESTION, SET_SHOW_SCORE } from "../reducers/application";
 
 export function useApplicationData() {
   const [state, dispatch] = useReducer(reducer, {
+    showQuiz: false,
     questions: [ {
       question: '',
       answerOptions: [{}]
@@ -22,6 +23,15 @@ export function useApplicationData() {
       });
     });
   }, []);
+
+  const setShowQuiz = (showQuiz) => {
+    if(showQuiz) {
+      dispatch({
+        type:SET_SHOW_QUIZ,
+        ...state
+      })
+    }
+  };
 
   const setScore = (guessCorrect) => {
     if(guessCorrect) {
@@ -44,7 +54,7 @@ export function useApplicationData() {
   const setShowScore = (show) => {
     if(show) {
       dispatch({
-        type: SET_SHOW_STATE,
+        type: SET_SHOW_SCORE,
         ...state,
       })
     }
@@ -54,6 +64,7 @@ export function useApplicationData() {
 
   return { 
     state,
+    setShowQuiz,
     setCurrentQuestion,
     setScore,
     setShowScore

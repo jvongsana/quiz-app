@@ -24,7 +24,7 @@ export default function QuestionSection(props) {
       </div>  
       <div className='answer-section'>
         {props.questions[props.currentQuestion].answerOptions.map((answerOption) => (
-          <button onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answer}</button>))}
+          <button key={answerOption.answer} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>{answerOption.answer}</button>))}
       </div>
     </div>
   )
