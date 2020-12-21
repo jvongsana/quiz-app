@@ -48,7 +48,6 @@ export default function App() {
           )
         ) : (
           <StartQuiz 
-            showQuiz={state.showQuiz}
             setShowQuiz={setShowQuiz}
             setStartTime={setStartTime}
           />

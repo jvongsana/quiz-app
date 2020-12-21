@@ -38,14 +38,12 @@ const reducer = function(state, action) {
       }
     case SET_START_TIME: 
       const startTime = new Date();
-      console.log(startTime)
       return {
         ...state,
         startTime
       }
     case SET_END_TIME: 
       const endTime = new Date();
-      console.log(endTime)
       return {
         ...state,
         endTime
