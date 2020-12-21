@@ -15,6 +15,10 @@ export default function Score(props) {
   } else {
     timeElapsed = `${seconds} seconds`
   }
+
+  const handleClick = () => {
+    window.location.reload(false);
+  };
   
   return (
     <div className='score-section'>
@@ -23,6 +27,9 @@ export default function Score(props) {
       You scored {props.score} out of {props.questions.length}
       <br/>
       in {timeElapsed}
+      <button  onClick={handleClick}>
+        Restart!
+      </button>
     </div>
   )
 }
